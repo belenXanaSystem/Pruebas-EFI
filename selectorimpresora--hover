@@ -1,0 +1,307 @@
+---
+import { Image } from "astro:assets";
+
+import Layout from "../layouts/Layout.astro";
+import Menu from "../components/Menu.astro";
+import CTAImpresora from "../components/CTAImpresora.astro";
+import Header from "../components/Header.astro";
+---
+
+<Layout title="EFI Nozomi 14000 LED">
+    <section class="bg-inicio">
+        <Header  />
+        <Menu/>
+        <div id="top">
+            <div class="perspective">
+                <div class="intro w-3/4 mx-auto" transition:animate="fade">
+                    <div class="bg-text" >
+                        <h2 >Corrugated Packaging</h2 >
+                        <h5>
+                            Choices to increase your printing capabilities and
+                            craft new business models
+                        </h5>
+                    </div>
+                    <div class="botones">
+                        <CTAImpresora
+                            className="blue"
+                            href="/nozomi14000-intro/"
+                            text="EFI Nozomi 14000 LED"
+                        />
+                        <CTAImpresora
+                            className="blue"
+                            href="/nozomi17000AQ-intro/"
+                            text="EFI Nozomi 17000 AQ"
+                        />
+                        <CTAImpresora
+                            className="blue"
+                            href=""
+                            text="PACKSIZE EFI X5 Nozomi"
+                        />
+                    </div>
+                </div>
+
+                <div class="bg-cards">
+                    <div class="card card1">
+                        <div class="thumb img1"></div>
+                    </div>
+                    <div class="card card2">
+                        <div class="thumb img2"></div>
+                    </div>
+                    <div class="card card3">
+                        <div class="thumb img3"></div>
+                    </div>
+                    <div class="card card4">
+                        <div class="thumb img4"></div>
+                    </div>
+                    <div class="card card5">
+                        <div class="thumb img5"></div>
+                    </div>
+                    <div class="card card6">
+                        <div class="thumb img6"></div>
+                    </div>
+                    <div class="card card7">
+                        <div class="thumb img7"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<script>
+    document
+        .getElementById("top")
+        .addEventListener("mousemove", function (event) {
+            const cards = document.querySelectorAll(".card");
+            cards.forEach((card, index) => {
+                const direction = index % 2 === 0 ? 1 : -1;
+                const offsetX = direction * (event.pageX / 40);
+                const offsetY = direction * (event.pageY / 40);
+                // Aplicamos una transición suave con easeOutQuad
+                const transition =
+                    "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+                const cardElement = card as HTMLElement;
+                cardElement.style.transition = transition;
+                (card as HTMLElement).style.transform =
+                    `translateX(${offsetX}px) translateY(${offsetY}px) rotateY(${offsetX / 10}deg)`;
+            });
+        });
+</script>
+
+<style>
+    html {
+        overflow: hidden;
+    }
+
+    .intro {
+        display: flex;
+        flex-direction: column;
+        align-content: start;
+        justify-content: start;
+        align-items: start;
+        gap: 4em;
+        padding: 25em 10em 10em 2em;
+    }
+
+    .intro h2 {
+        font-size: 150px;
+        font-weight: 500;
+        color: white;
+        text-align: start;
+        line-height: 1.2;
+    }
+
+    .intro h5 {
+        color: white;
+        font-weight: 300;
+    }
+
+    .bg-text {
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+    }
+
+    .botones {
+        display: flex;
+        gap: 2em;
+    }
+
+    #top {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+    }
+
+    .perspective {
+        width: 100%;
+        perspective: 1000px;
+    }
+
+    .bg-cards {
+        position: relative;
+        margin: 0em 15em;
+    }
+
+    .card {
+        min-width: 600px;
+        min-height: 350px;
+        margin: auto;
+        transform-style: preserve-3d;
+        transition: transform 0.05s linear;
+        position: absolute;
+        opacity: 0; /* Asegura que la card comience invisible */
+        transition: opacity 0.5s ease-out;
+
+        .thumb {
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100%;
+            width: 100%;
+            box-shadow: 4px 3px 21px -3px rgba(0, 0, 0, 0.75);
+        }
+    }
+
+    .card1 {
+        top: 0;
+        left: 0;
+        width: 750px;
+        height: 500px;
+        z-index: 5;
+        animation-delay: 0.1s;
+        animation: slideInFromLeft 0.8s ease-out forwards;
+    }
+    .img1 {
+        background-image: url("/img/inicio/CarugatedPackaging/3-on-pack-promos.jpg");
+        background-position: center;
+        transform: perspective(1000px) rotateY(10deg);
+    }
+    .card2 {
+        top: 100px;
+        left: 1000px;
+        width: 900px;
+        height: 550px;
+        z-index: 2;
+        animation: slideInFromBottom 0.8s ease-out forwards;
+        animation-delay: 0.2s;
+    }
+    .img2 {
+        background-image: url("/img/inicio/CarugatedPackaging/2-box-advertising.jpg");
+        background-position: left;
+        transform: perspective(1000px) rotateY(10deg);
+    }
+    .card3 {
+        top: 250px;
+        left: 1400px;
+        width: 800px;
+        height: 500px;
+        z-index: 1;
+        animation: slideInFromRight 0.8s ease-out forwards;
+        animation-delay: 0.3s;
+    }
+    .img3 {
+        background-image: url("/img/inicio/CarugatedPackaging/1-box-advertising.png");
+        transform: perspective(1000px) rotateY(-12deg);
+    }
+    .card4 {
+        top: 0;
+        left: 2450px;
+        width: 750px;
+        height: 500px;
+        z-index: 1;
+        animation: slideInFromTop 0.8s ease-out forwards;
+        animation-delay: 0.4s;
+    }
+    .img4 {
+        background-image: url("/img/inicio/CarugatedPackaging/4-on-pack-promos.png");
+        background-position: center;
+        transform: perspective(1000px) rotateY(-10deg);
+    }
+
+    .card5 {
+        top: 700px;
+        left: 100px;
+        width: 800px;
+        height: 500px;
+        z-index: 1;
+        animation: slideInFromLeft 0.8s ease-out forwards;
+        animation-delay: 0.5s;
+    }
+    .img5 {
+        background-image: url("/img/inicio/CarugatedPackaging/5-pallet-wrap_and_displays.jpg");
+        background-position: center;
+        transform: perspective(1000px) rotateY(10deg);
+    }
+    .card6 {
+        top: 900px;
+        left: 1250px;
+        width: 850px;
+        height: 550px;
+        z-index: 1;
+        animation: slideInFromBottom 0.8s ease-out forwards;
+        animation-delay: 0.6s;
+    }
+    .img6 {
+        background-image: url("/img/inicio/CarugatedPackaging/6-short-versioned-runs.jpg");
+        background-position: center;
+        transform: perspective(1000px) rotateY(-5deg);
+    }
+
+    .card7 {
+        top: 700px;
+        left: 2350px;
+        width: 800px;
+        height: 550px;
+        z-index: 1;
+        animation: slideInFromRight 0.8s ease-out forwards;
+        animation-delay: 0.7s;
+    }
+    .img7 {
+        background-image: url("/img/inicio/CarugatedPackaging/7-eco-friendly-look-and-feel.png");
+        background-position: center;
+        transform: perspective(1000px) rotateY(-10deg);
+    }
+    @keyframes slideInFromLeft {
+        0% {
+            translate: translateX(-100px);
+            opacity: 0;
+        }
+        100% {
+            translate: translateX(0px);
+            opacity: 1;
+        }
+    }
+    @keyframes slideInFromRight {
+        0% {
+            translate: translateX(100px);
+            opacity: 0;
+        }
+        100% {
+            translate: translateX(-0px);
+            opacity: 1;
+        }
+    }
+    @keyframes slideInFromTop {
+        0% {
+            translate: translateY(-100px);
+            opacity: 0;
+        }
+        100% {
+            translate: translateY(0px);
+            opacity: 1;
+        }
+    }
+    @keyframes slideInFromBottom {
+        0% {
+            translate: translateY(100px);
+            opacity: 0;
+        }
+        100% {
+            translate: translateY(0px);
+            opacity: 1;
+        }
+    }
+</style>
